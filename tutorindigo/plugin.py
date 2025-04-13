@@ -169,7 +169,6 @@ for path in glob(
     with open(path, encoding="utf-8") as patch_file:
         hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
 
-# Footer slot configuration for styled MFEs
 for mfe in indigo_styled_mfes:
     PLUGIN_SLOTS.add_item(
         (
@@ -202,14 +201,14 @@ for mfe in indigo_styled_mfes:
         ),
     )
 
-# New configuration for desktop_logged_out_items_slot
+# New configuration for learning_help_slot
 PLUGIN_SLOTS.add_item(
     (
-        "authn",
-        "desktop_logged_out_items_slot",
+        "learning",
+        "learning_help_slot",
         """
         {
-            keepDefault: true,
+            keepDefault: false,
             plugins: [
                 {
                     op: PLUGIN_OPERATIONS.Insert,
