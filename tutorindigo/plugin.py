@@ -20,7 +20,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
     "defaults": {
         "VERSION": __version__,
         "WELCOME_MESSAGE": "The place for all your online learning",
-        "PRIMARY_COLOR": "#15376D",  # Indigo
+        "PRIMARY_COLOR": "#EB5939",  # Indigo
         "ENABLE_DARK_TOGGLE": True,
         "FOOTER_NAV_LINKS": [
             {"title": "About Us", "url": "/about"},
@@ -201,7 +201,7 @@ for mfe in indigo_styled_mfes:
         ),
     )
 
-# New configuration for learning_help_slot
+# Configuration for learning_help_slot
 PLUGIN_SLOTS.add_item(
     (
         "learning",
@@ -223,6 +223,40 @@ PLUGIN_SLOTS.add_item(
                         ),
                     },
                 },
+            ]
+        }
+        """,
+    ),
+)
+
+# New configuration for desktop_user_menu_slot
+PLUGIN_SLOTS.add_item(
+    (
+        "profile",
+        "desktop_user_menu_slot",
+        """
+        {
+            keepDefault: true,
+            plugins: [
+                {
+                    op: PLUGIN_OPERATIONS.Modify,
+                    widgetId: 'default_contents',
+                    fn: (widget) => {
+                        if (!widget.content.menu) {
+                            widget.content.menu = [];
+                        }
+                        widget.content.menu.push({
+                            items: [
+                                {
+                                    type: 'item',
+                                    href: '/shoppingcart',
+                                    content: '<span style="display: flex; align-items: center;"><span style="margin-right: 8px;">🛒</span>Shop Now</span>'
+                                }
+                            ]
+                        });
+                        return widget;
+                    }
+                }
             ]
         }
         """,
